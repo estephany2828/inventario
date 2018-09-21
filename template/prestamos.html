@@ -1,0 +1,33 @@
+{% extends "inicio.html" %}
+
+{% block titulo %}
+   Perfil  
+{% endblock titulo%}
+
+{% block titulomenu %}
+PERFIL
+{% endblock titulomenu %}
+
+{% block textomenu %}
+{{lista}}
+{% if request.user.is_authenticated and request.user.is_superuser %}
+  <a href="{}">agregar_producto</a>
+{% endif %}
+
+<center>
+    <h1>{{ accion }} Producto</h1>
+</center>
+<div class="row justify-content-center">
+    
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{formulario.as_p}}
+
+        <input class="btn btn-primary" type="submit" name="Agregar" value="Guardar Cambios">	
+    </form>
+</div>
+<center>
+    <a href="{% url 'lista_productos' %}">regresar a lista productos</a>
+</center>
+
+{% endblock textomenu %}

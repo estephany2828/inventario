@@ -1,0 +1,56 @@
+{% extends "inicio.html" %}
+
+{% block titulo %}
+   Dispositivos
+{% endblock titulo%}
+
+{% block titulomenu %}
+Inventario Dispositivos
+{% endblock titulomenu %}
+
+{% block textomenu %}
+{{lista}}
+{% if request.user.is_authenticated and request.user.is_superuser %}
+  <a href="{url 'agregar_elemento'}">agregar_elemento</a>
+{% endif %}
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">id_dispositivo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Material</th>
+        <th scope="col">Encargado</th>
+        <th scope="col">Facultad</th>
+        <th scope="col">Departamento</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in lista %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ x.id_elemento }}</td>
+          <td>{{ x.nombre }}</td>
+          <td>{{ x.material }}</td>
+          <td>{{ x.encargado }}</td>
+          <td>{{ x.facultad }}</td>
+          <td>{{ x.departamento }}</td>
+          <td>
+              
+            
+          </td>
+          <a href = "{% url 'ver_elemento' id_elemento=x.id_elemento %}" >ver </a> 
+        <a href = "{% url 'editar_elemento' id_elemento=x.id_elemento %}" >Editar </a> 
+        <a href = "{% url 'eliminar_elemento' id_elemento=x.id_elemento %}" >Eliminar </a> 
+        <a href = "{% url 'desactivar_elemento' id_elemento=x.id_elemento %}" >Desactivar </a> 
+
+
+        
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock textomenu %}

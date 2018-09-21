@@ -1,0 +1,32 @@
+{% extends "inicio.html" %}
+
+{% block titulo %}
+   Perfil  
+{% endblock titulo%}
+
+{% block titulomenu %}
+PERFIL
+{% endblock titulomenu %}
+
+{% block textomenu %}
+
+
+<center>
+        <h2>{{ obj }}</h2>hhh
+        <h1>{{ lista }}</h1>
+    </center>
+    
+    <div class="row justify-content-center">
+        ({{request.user.username}})
+        
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{formulario.as_p}}
+            
+    
+            <input class="btn btn-primary" type="submit" name="Agregar" value="Guardar Cambios">	
+        </form>
+    </div>
+   
+
+{% endblock textomenu %}

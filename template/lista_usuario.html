@@ -1,0 +1,63 @@
+{% extends "inicio.html" %}
+
+{% block titulo %}
+   salones     
+{% endblock titulo%}
+
+{% block titulomenu %}
+Inventario Salones
+{% endblock titulomenu %}
+
+{% block textomenu %}
+
+{% if request.user.is_authenticated and request.user.is_superuser %}
+  <a href="{% url 'agregar_usuario' %}">agregar_usuario</a>
+{% endif %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">cedula </th>
+      <th scope="col">nombre</th>
+      <th scope="col">codigo</th>
+      <th scope="col">telefono</th>
+      <th scope="col">rol</th>
+      <th scope="col">facultad</th>
+      
+   
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for x in lista %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ x.id_cedula }}</td>
+        <td>{{ x.nombre }}</td>
+        <td>{{ x.codigo }}</td>
+        <td>{{ x.telefono }}</td>
+        <td>{{ x.rol }}</td>
+        <td>{{ x.facultad }}
+          
+        </td>
+
+        
+        
+        <td>
+          <a href="{% url 'ver_usuario' id_cedula=x.id_cedula %}">ver<div class="fas fa-search" ></div></a>
+          {% if request.user.is_authenticated and request.user.is_superuser %}
+            <a href="{% url 'editar_usuario' id_cedula=x.id_cedula %}">editar<div class="fas fa-edit" ></div></a>
+            <a href="{% url 'eliminar_usuario' id_cedula=x.id_cedula %}">eliminar<div class="fas fa-trash" ></div></a>
+            <a href="{% url 'desactivar_usuario' id_cedula=x.id_cedula  %}">desactivar <div class="fas fa-lock" ></div></a>
+          {% endif %}
+        </td> 
+        <td>
+          
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock textomenu %}

@@ -1,0 +1,41 @@
+{% extends "inicio.html" %}
+
+{% block titulo %}
+   virtual
+{% endblock titulo%}
+
+{% block titulomenu %}
+Ver Virtual
+{% endblock titulomenu %}
+
+{% block textomenu %}
+<center>
+		
+	<h1>{{ obj }}</h1>
+</center>
+
+<div class="row justify-content-center">
+    <div class="card col-8">
+                  
+            <div class="col-4">
+                   
+                <p><strong>numero :</strong> {{ obj.ip_numero }}</p>
+                <p><strong>mascara : </strong>{{ obj.mascara }}</p>
+                <p><strong>asignacion : </strong>{{ obj.asignacion }}</p>
+                <p><strong>encargado : </strong>{{ obj.encargado }}</p>
+                <p><strong>facultad : </strong>{{ obj.facultad }}</p>
+                <p><strong>estado : </strong>{{ obj.status }}</p>
+
+          
+                
+            
+        </div>
+    </div>
+</div>
+<center>
+    
+<a href="{% url 'lista_ip' %}">regresar a lista ip</a>
+</center>
+
+
+{% endblock textomenu %}
